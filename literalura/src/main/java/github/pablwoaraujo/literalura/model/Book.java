@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,10 +18,25 @@ public class Book {
 	private String idioma;
 	private Integer downloads;
 
-	private String autor;
+	@ManyToOne
+	private Author autor;
 
 	public Book() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public static Book convertDTO(BookDataResponseDTO bookDataResponseDTO, Author author) {
+		var livro = new Book();
+		livro.downloads = bookDataResponseDTO.downloads();
+		livro.titulo = bookDataResponseDTO.titulo();
+
+		if (!bookDataResponseDTO.idiomas().isEmpty()) {
+			livro.idioma = bookDataResponseDTO.idiomas().get(0);
+		}
+
+		livro.autor = author;
+
+		return livro;
 	}
 
 	public Long getId() {
@@ -55,18 +71,23 @@ public class Book {
 		this.downloads = downloads;
 	}
 
-	public String getAutor() {
+	public Author getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAuthor(Author autor) {
 		this.autor = autor;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", titulo=" + titulo + ", idioma=" + idioma + ", downloads=" + downloads + ", autor="
-				+ autor + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Título: ").append(this.titulo).append("\n");
+		sb.append("Autores:\n").append(this.autor.toString()).append("\n");
+		sb.append("Idiomas: ").append(idioma).append("\n");
+		sb.append("Número de Downloads: ").append(downloads);
+
+		return sb.toString();
 	}
 
 }
