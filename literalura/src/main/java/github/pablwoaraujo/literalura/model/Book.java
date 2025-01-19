@@ -79,6 +79,14 @@ public class Book {
 		this.autor = autor;
 	}
 
+	public String shortDescription() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Título: ").append(this.titulo);
+		sb.append(" - autores: ").append(this.autor.toString());
+
+		return sb.toString();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
