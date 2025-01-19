@@ -19,3 +19,8 @@ Para rodar o PostgreSQL em um container Docker, execute o seguinte comando no se
 ```bash
 docker run -p 5432:5432 --name literalura -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -e POSTGRES_DB=literalura -d postgres
 ```
+
+Insígnia do desafio |  
+:-------------------------:|
+![badge](https://cdn3.gnarususercontent.com.br/3841-Programa%C3%A7%C3%A3o/badge%20literalura.png) |
+Insígnia de conclusão do desafio.|
