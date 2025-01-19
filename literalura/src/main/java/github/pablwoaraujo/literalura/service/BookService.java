@@ -34,4 +34,11 @@ public class BookService {
 		return existingBook.get();
 	}
 
+	public List<String> listRegisteredLanguages() {
+		return bookRepository.findDistinctLanguages();
+	}
+
+	public List<Book> listBooksByLanguage(String language) {
+		return bookRepository.findByIdioma(language);
+	}
 }

@@ -82,8 +82,14 @@ public class Book {
 	public String shortDescription() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Título: ").append(this.titulo);
-		sb.append(" - autores: ").append(this.autor.toString());
 
+		if (this.autor != null) {
+			sb.append(" - autores: ").append(this.autor.toString());
+		} else {
+			sb.append(" - autores: Desconhecido");
+		}
+
+		sb.append(" - ").append(this.idioma);
 		return sb.toString();
 	}
 
@@ -91,10 +97,15 @@ public class Book {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Título: ").append(this.titulo).append("\n");
-		sb.append("Autores:\n").append(this.autor.toString()).append("\n");
+
+		if (this.autor != null) {
+			sb.append("Autores:\n").append(this.autor.toString()).append("\n");
+		} else {
+			sb.append("Autores: Desconhecido\n");
+		}
+
 		sb.append("Idiomas: ").append(idioma).append("\n");
 		sb.append("Número de Downloads: ").append(downloads);
-
 		return sb.toString();
 	}
 
