@@ -18,19 +18,24 @@ public class AuthorService {
 	public AuthorService() {
 
 	}
-	
+
 	public Author register(PersonResponseDTO dto) {
 		Author author = authorRepository.findByNome(dto.nome())
 				.orElseGet(() -> authorRepository.save(Author.convertDTO(dto)));
-		
+
 		return author;
-		
-		//Author author = Author.convertDTO(dto);
-		//return authorRepository.save(author);
+
+		// Author author = Author.convertDTO(dto);
+		// return authorRepository.save(author);
 	}
 
 	public List<Author> listRegisteredAuthors() {
 		return authorRepository.findAll();
+	}
+
+	public List<Author> listLivingAuthorsInAGivenYear(Integer year) {
+		return authorRepository
+				.findByAnoNascimentoLessThanEqualAndAnoFalecimentoGreaterThanEqualOrAnoFalecimentoIsNull(year, year);
 	}
 
 }

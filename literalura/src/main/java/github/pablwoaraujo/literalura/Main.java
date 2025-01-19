@@ -69,6 +69,7 @@ public class Main {
 				break;
 			case 4:
 				System.out.println("4 - Listar autores vivos em um determinado ano");
+				listLivingAuthorsInAGivenYear();
 				break;
 			case 5:
 				System.out.println("5 - Listar livros em um determinado idioma");
@@ -126,6 +127,25 @@ public class Main {
 		}
 
 		System.out.println("\nTotal de autores registrados: " + count);
+	}
+
+	private void listLivingAuthorsInAGivenYear() {
+		System.out.println("\nLISTAR AUTORES VIVOS EM UM DETERMINADO ANO ********************************************");
+		System.out.print("Digite o ano desejado: ");
+		Integer year = scanner.nextInt();
+
+		List<Author> authors = authorService.listLivingAuthorsInAGivenYear(year);
+
+		if (authors.isEmpty()) {
+			System.out.println("******************************************** Nenhum autor encontrado\n");
+		} else {
+			int count = 0;
+			for (Author author : authors) {
+				count++;
+				System.out.println(count + ". " + author.toString());
+			}
+			System.out.println("\nTotal de autores vivos no ano " + year + ": " + count);
+		}
 	}
 
 }
